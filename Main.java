@@ -35,9 +35,9 @@ public class Main {
 			case 3:
 				System.out.print("Ingrese el nombre de la nueva oferta: ");
 				String nuevaOferta = leer.nextLine().trim();
-				if () {
+				if (nuevaOferta.isEmpty()) {
 					System.out.println("El nombre de la oferta no puede estar vacío.");
-				} else if () {
+				} else if (agregarCombo(ofertas, nuevaOferta)) {
 					System.out.println("Oferta agregada correctamente.");
 				} else {
 					System.out.println("No hay espacio disponible.");
@@ -53,3 +53,24 @@ public class Main {
 		} while (opcion != 4);
 		leer.close();
 	}
+
+	public static boolean buscarProducto(String[] ofertas, String nombreBuscado) {
+		for (int i = 0; i < ofertas.length; i++) {
+			if (ofertas[i] != null && ofertas[i].equalsIgnoreCase(nombreBuscado)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static boolean agregarCombo(String[] ofertas, String nuevaOferta) {
+		for (int i = 0; i < ofertas.length; i++) {
+			if (ofertas[i] == null) {
+				ofertas[i] = nuevaOferta;
+				System.out.println("Oferta registrada en la posición " + (i + 1));
+				return true;
+			}
+		}
+		return false;
+	}
+}
